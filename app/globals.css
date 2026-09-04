@@ -22,6 +22,10 @@
   }
 }
 
+@utility member-card {
+  @apply relative mt-12 flex h-auto w-80 flex-col items-center bg-[#f7f7f7] px-8 pb-8 pt-16 text-center;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

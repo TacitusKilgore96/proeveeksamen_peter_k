@@ -20,3 +20,5 @@ Light Sea Green: #01B3a7
 4. begynder på forside
 
 5. laver kontaktside/formular
+
+6. fortsætter med forsiden

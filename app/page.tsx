@@ -2,13 +2,28 @@
 
 import { useEffect } from "react";
 import useRequestData from "@/hooks/useRequestData";
+import Members from "@/components/members/page";
 
 export default function Home() {
-  const { makeRequest, data, isLoading, error } = useRequestData();
+  const {
+    makeRequest: makeAboutRequest,
+    data: aboutData,
+    isLoading: isAboutLoading,
+    error: aboutError,
+  } = useRequestData();
+  const {
+    makeRequest: makeTeamRequest,
+    data: teamData,
+    isLoading: isTeamLoading,
+    error: teamError,
+  } = useRequestData();
 
   useEffect(() => {
     const loadData = async () => {
-      await makeRequest("/about", "GET");
+      await Promise.all([
+        makeAboutRequest("/about", "GET"),
+        makeTeamRequest("/team", "GET"),
+      ]);
     };
 
     loadData();
@@ -47,32 +62,39 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <a className="text-xl p-10 mb-10" href="#">Vores ture →</a>
+          <a className="group mb-10 inline-flex items-center justify-center gap-2 p-10 text-2xl" href="#">
+            <span className="transition-transform duration-200 group-hover:-translate-x-1">Vores ture</span>
+            <span className="inline-block origin-center transition-transform duration-200 group-hover:scale-x-170">→</span>
+          </a>
         </div>
         </section>
 
         {/* Lidt om os */}
         <section className="bg-[#FFFFFF]">
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-20 p-25">
             <img src="/images/om-os.jpg" alt="" />
-            <div>
-              <h1 className="text-2xl">Lidt om os</h1>
-              <h2 className="text-[#01B3a7]">Oplev Nye Horizonter</h2>
-              <p>I foråret 2075......</p>
-              <a href="/contact" className="inline-block bg-[#01B3a7] hover:bg-[#018d83] text-[#FFFFFF] p-5">Kontakt os</a>
+
+            <div className="grid justify-center gap-4 p-10 w-[40%]">
+              <h1 className="text-5xl font-extrabold">Lidt om os</h1>
+              <h2 className="text-[#01B3a7] text-2xl">{aboutData?.title}</h2>
+              <div className="relative h-0.5 w-full bg-gray-300">
+                <span className="absolute inset-y-0 left-0 w-1/2 scale-y-200 bg-[#01B3a7]" />
+              </div>
+              <p>
+                {aboutData?.content?.replace(/<[^>]*>/g, '') ?? ""}
+                </p>
+              <button type="button" onClick={() => window.location.href = "/contact"} className="inline-block bg-[#01B3a7] hover:bg-[#018d83] text-[#FFFFFF] p-4 w-[40%]">Kontakt os</button>
             </div>
+
           </div>
         </section>
 
-        {/* Vores team */}
-        <section>
-
-        </section>
+        <Members teamData={teamData} />
 
         {/* nyhedsbrev */}
 
-      {isLoading && <p>Loader...</p>}
-      {error && <p>Der opstod en fejl</p>}
+      {(isAboutLoading || isTeamLoading) && <p>Loader...</p>}
+      {(aboutError || teamError) && <p>Der opstod en fejl</p>}
     </main>
   );
 }
