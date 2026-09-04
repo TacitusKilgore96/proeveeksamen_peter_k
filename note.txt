@@ -1,0 +1,22 @@
+1. Følger guiden til at opsætte API på mac (mongodb)
+
+2. laver nyt project til prøve-eksamen: 
+//
+npx create-next-app@latest proeveeksamen --typescript --tailwind --eslint
+//
+inkluderer; typescript, tailwind, next, react
+
+Farver:
+Deep Space Blue (Dark Blue): #11263A
+Deep Space Blue (Deep Slate Blue): #162E44
+White: #FFFFFF
+Bright Snow: #F7F7F7
+Light Sea Green: #01B3a7
+
+// laver hook til api kald (useRequestData.ts)
+
+3. indsætter Footer og Header
+
+4. begynder på forside
+
+5. laver kontaktside/formular
