@@ -12,6 +12,9 @@ const contact = () => {
     phone: '',
     message: '',
   })
+
+  /* Holder styr på om formularen er klar, sender, lykkedes eller fejlede. */
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   
   /* Event handler. Kører hver gang brugeren skriver et bogstav i et af felterne. */
   const handleChange = (
@@ -26,12 +29,40 @@ const contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  /* submit handler. kører når brugeren trykker på "Send" knappen. */
-  const handleSubmit = (e: React.FormEvent) => {
-    /* e.preventDefault() forhindrer browseren i at genindlæse siden */
+  /* Kører når brugeren trykker på "Send"-knappen. */
+  const handleSubmit = async (e: React.FormEvent) => {
+    /* Forhindrer browseren i at genindlæse siden efter submit. */
     e.preventDefault()
 
-    console.log('Formular indsendt', formData)
+    /* Viser brugeren, at requesten er i gang. */
+    setStatus('sending')
+
+    try {
+      /* Sender formularens data til API'ets POST /contact endpoint. */
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
+        /* POST opretter en ny kontaktbesked i databasen. */
+        method: 'POST',
+        /* Fortæller backend, at body indeholder JSON. */
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        /* Konverterer JavaScript-objektet til JSON, som kan sendes over HTTP. */
+        body: JSON.stringify(formData),
+      })
+
+      /* response.ok er true ved HTTP-status 200-299. */
+      if (!response.ok) {
+        throw new Error('Kontaktformularen kunne ikke sendes')
+      }
+
+      /* Viser succes og rydder felterne efter en vellykket POST. */
+      setStatus('success')
+      setFormData({ name: '', email: '', phone: '', message: '' })
+    } catch (error) {
+      /* Fanger netværksfejl og fejlstatusser fra API'et. */
+      console.error('Fejl ved indsendelse af kontaktformular:', error)
+      setStatus('error')
+    }
   }
 
   return (
@@ -40,7 +71,7 @@ const contact = () => {
     <div>
 
       <div className="mx-auto max-w-300 p-8 m-30">
-      <div className='flex gap-10 items-center'>
+      <div className='flex gap-10 items-center mb-10'>
         <h2 className="text-2xl font-bold text-center text-5xl">Kontakt</h2>
         <span aria-hidden="true" className="h-13 w-0.5 rounded-2xl self-center bg-black/10" />
         <p>Skulle du side med et spørgsmål eller to, så skriv endelig til os og vi vil kontakte dig hurtigst muligt.</p>
@@ -80,6 +111,7 @@ const contact = () => {
               type="tel"
               id="phone"
               name="phone"
+              required
               placeholder="Tlf"
               value={formData.phone}
               onChange={handleChange}
@@ -105,11 +137,14 @@ const contact = () => {
         {/* Send Knap */}
         <button
           type="submit"
+          disabled={status === 'sending'}
           className="mt-2 w-78 cursor-pointer bg-[#01B3A7] py-3 text-base font-bold text-white transition-colors duration-200 hover:bg-[#01968c]"
         >
-          Send
+          {status === 'sending' ? 'Sender...' : 'Send'}
         </button>
       </form>
+      {status === 'success' && <p className="mt-4 text-[#01B3A7]">Din besked er sendt.</p>}
+      {status === 'error' && <p className="mt-4 text-red-600">Beskeden kunne ikke sendes. Prøv igen.</p>}
     </div>
 
     </div>

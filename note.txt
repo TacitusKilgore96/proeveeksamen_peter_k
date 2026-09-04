@@ -22,3 +22,9 @@ Light Sea Green: #01B3a7
 5. laver kontaktside/formular
 
 6. fortsætter med forsiden
+
+7. tilføjer post til kontaktformularen
+
+8. laver en admin page 
+Er tilgængelig ved /admin, altså http://localhost:3000/admin
+admin page viser alt data sendt fra kontaktformularen
