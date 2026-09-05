@@ -63,7 +63,7 @@ const Footer = () => {
       <div className="relative bg-[#11263A] py-8 h-[110%]">
         <div className="mx-auto flex max-w-6xl items-center justify-center">
         <p className="absolute left-0 text-sm opacity-30 ml-[15%]">© 2021 Space Venture. All rights reserved.</p>
-        <div className="flex gap-3 [&_a]:items-center [&_a]:justify-center [&_img]:h-8 [&_img]:opacity-30 [&_img]:transition-[height,opacity] [&_img]:duration-200 [&_img]:hover:h-4 [&_img]:hover:opacity-100">
+        <div className="flex gap-3 [&_a]:items-center [&_a]:justify-center [&_img]:h-8 [&_img]:opacity-30 [&_img]:transition-[height,opacity] [&_img]:duration-200 [&_img]:hover:opacity-100">
             <a href="#"><img className="brightness-0 invert" src="/images/social_icons/facebook-f-brands-solid-full(1).svg" alt="facebook" /></a>
             <a href="#"><img className="brightness-0 invert" src="/images/social_icons/twitter-brands-solid-full(1).svg" alt="twitter" /></a>
             <a href="#"><img className="brightness-0 invert" src="/images/social_icons/google-plus-g-brands-solid-full.svg" alt="googleplus" /></a>

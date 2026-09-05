@@ -117,7 +117,7 @@ export default function Home() {
         {/* Lidt om os */}
         <section className="bg-[#FFFFFF]">
           <div className="flex justify-center gap-20 p-25">
-            <img src="/images/om-os.jpg" alt="" />
+            <img className="object-contain" src="/images/om-os.jpg" alt="" />
 
             <div className="grid justify-center gap-4 p-10 w-[40%]">
               <h1 className="text-5xl font-extrabold">Lidt om os</h1>

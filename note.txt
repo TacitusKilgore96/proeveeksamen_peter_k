@@ -1,10 +1,30 @@
 1. Følger guiden til at opsætte API på mac (mongodb)
 
 2. laver nyt project til prøve-eksamen: 
-//
+
 npx create-next-app@latest proeveeksamen --typescript --tailwind --eslint
-//
 inkluderer; typescript, tailwind, next, react
+Edit: Tilføjer Axios
+
+3. laver hook til api kald (useRequestData.ts)
+
+4. indsætter Footer og Header
+
+5. begynder på forside
+
+6. laver kontaktside/formular
+Edit: indsendte kontaktformularer sendes til back-end og kan ses/slettes/markeres i /admin
+
+7. fortsætter med forsiden
+
+8. tilføjer post til kontaktformularen
+
+9. laver et component til "Vores team" delen af forsiden, der henter teamets data
+
+10. laver en admin page 
+Edit: Er tilgængelig ved /admin, altså http://localhost:3000/admin
+Edit: admin page viser alt data sendt fra kontaktformularen
+Edit: admin page kan vise/slette abonnementer på nyhedsbrevet
 
 Farver:
 Deep Space Blue (Dark Blue): #11263A
@@ -12,19 +32,3 @@ Deep Space Blue (Deep Slate Blue): #162E44
 White: #FFFFFF
 Bright Snow: #F7F7F7
 Light Sea Green: #01B3a7
-
-// laver hook til api kald (useRequestData.ts)
-
-3. indsætter Footer og Header
-
-4. begynder på forside
-
-5. laver kontaktside/formular
-
-6. fortsætter med forsiden
-
-7. tilføjer post til kontaktformularen
-
-8. laver en admin page 
-Er tilgængelig ved /admin, altså http://localhost:3000/admin
-admin page viser alt data sendt fra kontaktformularen
