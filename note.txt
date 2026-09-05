@@ -26,6 +26,9 @@ Edit: Er tilgængelig ved /admin, altså http://localhost:3000/admin
 Edit: admin page viser alt data sendt fra kontaktformularen
 Edit: admin page kan vise/slette abonnementer på nyhedsbrevet
 
+11. laver Rumfærge (kan tilgås i headeren)
+henter data til galleri images. Bruger lignende metode fra forsiden.
+
 Farver:
 Deep Space Blue (Dark Blue): #11263A
 Deep Space Blue (Deep Slate Blue): #162E44
